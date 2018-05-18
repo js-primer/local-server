@@ -36,7 +36,7 @@
     "precommit": "lint-staged",
     "postcommit": "git reset",
     "prepublish": "npm run --if-present build",
-    "test": "mocha \"test/**/*.ts\"",
+    "test": "mocha \"test/**/*.{js,ts}\"",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "watch": "tsc -p . --watch"
   },
