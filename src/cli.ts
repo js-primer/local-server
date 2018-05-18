@@ -24,7 +24,7 @@ export const run = () => {
     );
 
     const server = new LocalServer({
-        rootDir: cli.flags.input.length > 0 ? cli.flags.input[0] : process.cwd(),
+        rootDir: cli.input.length > 0 ? cli.input[0] : process.cwd(),
         port: cli.flags.port !== undefined ? Number(cli.flags.port) : 3000
     });
     return server
