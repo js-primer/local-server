@@ -1,0 +1,84 @@
+{
+  "name": "@js-primer/local-server",
+  "version": "0.0.0",
+  "description": "Local Server for js-primer.",
+  "keywords": [
+    "js-primer",
+    "local-server",
+    "server"
+  ],
+  "homepage": "https://github.com/js-primer/local-server",
+  "bugs": {
+    "url": "https://github.com/js-primer/local-server/issues"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "main": "lib/local-server.js",
+  "types": "lib/local-server.d.ts",
+  "bin": {
+    "js-primer-local-server": "./bin/cmd.js"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/js-primer/local-server.git"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production tsc -p .",
+    "precommit": "lint-staged",
+    "postcommit": "git reset",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha \"test/**/*.ts\"",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "watch": "tsc -p . --watch"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": false,
+    "tabWidth": 4
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "connect": "^3.6.6",
+    "detect-port": "^1.2.3",
+    "log-symbols": "^2.2.0",
+    "meow": "^5.0.0",
+    "serve-static": "^1.13.2"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/connect": "^3.4.32",
+    "@types/detect-port": "^1.1.0",
+    "@types/meow": "^4.0.1",
+    "@types/mocha": "^5.2.0",
+    "@types/node": "^10.1.1",
+    "@types/serve-static": "^1.13.2",
+    "@types/supertest": "^2.0.4",
+    "cross-env": "^5.1.5",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.1.0",
+    "mocha": "^5.1.1",
+    "prettier": "^1.12.1",
+    "supertest": "^3.1.0",
+    "ts-node": "^6.0.3",
+    "ts-node-test-register": "^3.0.0",
+    "typescript": "^2.8.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
