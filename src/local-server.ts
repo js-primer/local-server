@@ -6,6 +6,7 @@ import { HandleFunction } from "connect";
 import detectPort = require("detect-port");
 import { responseLog } from "./middlewares/response-log";
 import chalk from "chalk";
+
 const logSymbols = require("log-symbols");
 
 export interface LocalServerOptions {
@@ -29,15 +30,17 @@ export class LocalServer {
                 console.log(
                     `${logSymbols.warning} ポート番号:${
                         this.port
-                    }はすでに使われています。別の利用できるポート番号を探索中…`
+                    }はすでに使われています。利用できる別のポート番号を探索中です。`
                 );
             }
             const serve = serveStatic(this.rootDir, { index: ["index.html", "index.htm"] }) as HandleFunction;
             this.server = connect()
                 .use(responseLog())
                 .use(serve)
-                .listen(newPort, function() {
+                .listen(newPort, () => {
+                    const appName = path.basename(this.rootDir) || "app";
                     console.log(`
+${chalk.underline(appName)}のローカルサーバを起動しました。
 次のURLをブラウザで開いてください。
 
   URL: ${chalk.underline(`http://localhost:${newPort}`)}
