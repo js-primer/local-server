@@ -5,7 +5,7 @@ import serveStatic = require("serve-static");
 import { HandleFunction } from "connect";
 import detectPort = require("detect-port");
 import { responseLog } from "./middlewares/response-log";
-
+import chalk from "chalk";
 const logSymbols = require("log-symbols");
 
 export interface LocalServerOptions {
@@ -26,14 +26,23 @@ export class LocalServer {
     start() {
         return detectPort(this.port).then(newPort => {
             if (this.port !== newPort) {
-                console.log(`${logSymbols.warning} Port:${this.port} is already used. Lookup next available port.`);
+                console.log(
+                    `${logSymbols.warning} ポート番号:${
+                        this.port
+                    }はすでに使われています。別の利用できるポート番号を探索中…`
+                );
             }
             const serve = serveStatic(this.rootDir, { index: ["index.html", "index.htm"] }) as HandleFunction;
             this.server = connect()
                 .use(responseLog())
                 .use(serve)
                 .listen(newPort, function() {
-                    console.log(`${logSymbols.info} Open http://localhost:${newPort}`);
+                    console.log(`
+次のURLをブラウザで開いてください。
+
+  URL: ${chalk.underline(`http://localhost:${newPort}`)}
+
+`);
                 });
             return this.server;
         });
