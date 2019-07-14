@@ -33,8 +33,6 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc -p .",
-    "precommit": "lint-staged",
-    "postcommit": "git reset",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
@@ -79,5 +77,11 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "post-commit": "git reset",
+      "pre-commit": "lint-staged"
+    }
   }
 }
