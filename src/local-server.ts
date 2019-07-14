@@ -6,8 +6,7 @@ import { HandleFunction } from "connect";
 import detectPort = require("detect-port");
 import { responseLog } from "./middlewares/response-log";
 import chalk from "chalk";
-
-const logSymbols = require("log-symbols");
+import logSymbols from "log-symbols";
 
 export interface LocalServerOptions {
     rootDir?: string;
@@ -24,13 +23,14 @@ export class LocalServer {
         this.port = options.port || 3000;
     }
 
+    get appName() {
+        return this.rootDir ? path.basename(this.rootDir) : "app";
+    }
     start() {
         return detectPort(this.port).then(newPort => {
             if (this.port !== newPort) {
                 console.log(
-                    `${logSymbols.warning} ポート番号:${
-                        this.port
-                    }はすでに使われています。利用できる別のポート番号を探索中です。`
+                    `${logSymbols.warning} ポート番号:${this.port}はすでに使われています。利用できる別のポート番号を探索中です。`
                 );
             }
             const serve = serveStatic(this.rootDir, { index: ["index.html", "index.htm"] }) as HandleFunction;
@@ -38,13 +38,13 @@ export class LocalServer {
                 .use(responseLog())
                 .use(serve)
                 .listen(newPort, () => {
-                    const appName = path.basename(this.rootDir) || "app";
                     console.log(`
-${chalk.underline(appName)}のローカルサーバを起動しました。
+${chalk.underline(this.appName)}のローカルサーバを起動しました。
 次のURLをブラウザで開いてください。
 
   URL: ${chalk.underline(`http://localhost:${newPort}`)}
 
+Ctrl+Cのショートカットを押下することでローカルサーバを終了できます。
 `);
                 });
             return this.server;
@@ -52,8 +52,11 @@ ${chalk.underline(appName)}のローカルサーバを起動しました。
     }
 
     stop() {
-        if (this.server) {
-            this.server.close();
+        if (!this.server) {
         }
+        this.server.close();
+        console.log(`
+${chalk.underline(this.appName)}のローカルサーバを終了しました。
+`);
     }
 }

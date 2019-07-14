@@ -1,10 +1,10 @@
-const assert = require("assert");
-const path = require("path");
-const request = require("supertest");
-const { LocalServer } = require("../src/local-server");
+import path from "path";
+import request from "supertest";
+import { LocalServer } from "../src/local-server";
+import * as http from "http";
 const fixtures = path.join(__dirname, "/fixtures");
 
-async function createServer(dir) {
+async function createServer(dir?: string) {
     const server = new LocalServer({
         rootDir: dir || fixtures
     });
@@ -14,7 +14,7 @@ async function createServer(dir) {
 
 describe("LocalServer", function() {
     describe("basic operations", function() {
-        let server;
+        let server: http.Server;
         before(async function() {
             server = await createServer();
         });
@@ -96,7 +96,7 @@ describe("LocalServer", function() {
                     }
                     request(server)
                         .get("/todo.txt")
-                        .set("If-None-Match", res.headers.etag)
+                        .set("If-None-Match", (res as any).headers.etag)
                         .expect(304, done);
                 });
         });
@@ -104,7 +104,7 @@ describe("LocalServer", function() {
         it("should support precondition checks", function(done) {
             request(server)
                 .get("/todo.txt")
-                .set("If-Match", '"foo"')
+                .set("If-Match", "\"foo\"")
                 .expect(412, done);
         });
 
