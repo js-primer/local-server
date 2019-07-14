@@ -26,6 +26,7 @@ export class LocalServer {
     get appName() {
         return this.rootDir ? path.basename(this.rootDir) : "app";
     }
+
     start() {
         return detectPort(this.port).then(newPort => {
             if (this.port !== newPort) {
@@ -53,6 +54,7 @@ Ctrl+Cのショートカットを押下することでローカルサーバを�
 
     stop() {
         if (!this.server) {
+            return;
         }
         this.server.close();
         console.log(`
