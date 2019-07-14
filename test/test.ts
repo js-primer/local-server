@@ -2,6 +2,7 @@ import path from "path";
 import request from "supertest";
 import { LocalServer } from "../src/local-server";
 import * as http from "http";
+
 const fixtures = path.join(__dirname, "/fixtures");
 
 async function createServer(dir?: string) {
@@ -9,17 +10,19 @@ async function createServer(dir?: string) {
         rootDir: dir || fixtures
     });
     await server.start();
-    return server.server;
+    return server;
 }
 
 describe("LocalServer", function() {
     describe("basic operations", function() {
+        let localServer: LocalServer;
         let server: http.Server;
         before(async function() {
-            server = await createServer();
+            localServer = await createServer();
+            server = localServer.server;
         });
         after(() => {
-            return server.close();
+            return localServer.stop();
         });
 
         it("should serve static files", function(done) {
@@ -104,7 +107,7 @@ describe("LocalServer", function() {
         it("should support precondition checks", function(done) {
             request(server)
                 .get("/todo.txt")
-                .set("If-Match", "\"foo\"")
+                .set("If-Match", '"foo"')
                 .expect(412, done);
         });
 
