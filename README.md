@@ -25,14 +25,19 @@ Local Server for [js-primer](https://github.com/asciidwango/js-primer "js-primer
 指定したディレクトリをベースにサーバを起動する
 
     npx @js-primer/local-server ./docs
-    
+
+指定したポート番号でサーバを起動する
+
+    npx @js-primer/local-server --port 8000
+
+起動したローカルサーバは、コマンドラインで<kbd>Ctrl+C</kbd>のショートカットを押下することで終了できます。
+
 ### Usage for old Node.js
 
-NOde.js 8.2未満の場合は[npm](https://www.npmjs.com/)でインストールし利用できます。
+Node.js 8.2未満の場合は[npm](https://www.npmjs.com/)でインストールすることで利用できます。
 
     npm install local-server --global
     $ js-primer-local-server
-
 
 ## Changelog
 

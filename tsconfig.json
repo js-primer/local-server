@@ -8,6 +8,7 @@
     "target": "es5",
     "sourceMap": true,
     "declaration": true,
+    "esModuleInterop": true,
     "jsx": "preserve",
     "lib": [
       "es2017",
