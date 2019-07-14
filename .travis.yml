@@ -1,3 +1,11 @@
 sudo: false
 language: node_js
-node_js: "stable"
+node_js:
+  - "10"
+  - "node"
+# https://travis-ci.community/t/timeout-after-build-finished-and-succeeded/1336
+env:
+  - YARN_GPG=no
+os:
+  - linux
+  - windows
