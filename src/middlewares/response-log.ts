@@ -14,10 +14,14 @@ export const responseLog = (): HandleFunction => {
         // items shared between the request and response of just one cycle
         const cycle: Cycle = {
             log: getLogger(),
-            time: process.hrtime()
+            time: process.hrtime(),
         };
-        res.on("finish", () => logRes(req, res, cycle));
-        res.on("close", () => logClose(req, res, cycle));
+        const handleClose = () => logClose(req, res, cycle);
+        res.on("finish", () => {
+            logRes(req, res, cycle);
+            res.removeListener("close", handleClose);
+        });
+        res.on("close", handleClose);
 
         next();
     };
