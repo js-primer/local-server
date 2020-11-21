@@ -1,6 +1,6 @@
 # @js-primer/local-server
 
-Local Server for [js-primer](https://github.com/asciidwango/js-primer "js-primer").
+Local Server for [JavaScript Primer](https://github.com/asciidwango/js-primer "js-primer").
 
 ### Requirements
 
