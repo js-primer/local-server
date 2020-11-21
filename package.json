@@ -15,8 +15,7 @@
   "author": "azu",
   "files": [
     "bin/",
-    "lib/",
-    "src/"
+    "lib/"
   ],
   "main": "lib/local-server.js",
   "types": "lib/local-server.d.ts",
