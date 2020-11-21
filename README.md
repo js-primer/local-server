@@ -4,7 +4,7 @@ Local Server for [js-primer](https://github.com/asciidwango/js-primer "js-primer
 
 ### Requirements
 
-- Node.js 8.2 >=
+- Node.js 10+
     - It contains `npm`  5.3.0>=
     - It contains `npx` command 
 
