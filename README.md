@@ -35,9 +35,9 @@ Local Server for [JavaScript Primer](https://github.com/asciidwango/js-primer).
 
 起動したローカルサーバは、コマンドラインで<kbd>Ctrl+C</kbd>のショートカットを押下することで終了できます。
 
-### Usage for old Node.js
+### Usage for global installation
 
-Node.js 8.2未満の場合は[npm](https://www.npmjs.com/)でインストールすることで利用できます。
+`npm install --global`でグローバルなコマンドとしてインストールできます。
 
     npm install local-server --global
     $ js-primer-local-server
@@ -48,9 +48,7 @@ See [Releases page](https://github.com/js-primer/local-server/releases).
 
 ## Running tests
 
-Install devDependencies and Run `npm test`:
-
-    npm i -d && npm test
+    yarn install && npm test
 
 ## Contributing
 
