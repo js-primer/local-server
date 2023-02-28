@@ -1,6 +1,9 @@
 # @js-primer/local-server
 
-Local Server for [JavaScript Primer](https://github.com/asciidwango/js-primer "js-primer").
+Local Server for [JavaScript Primer](https://github.com/asciidwango/js-primer).
+
+[JavaScript Primer](https://github.com/asciidwango/js-primer)のサンプルコードで利用することを目的にしたローカルサーバです。
+公開するアプリケーションには利用しないでください。
 
 ### Requirements
 
