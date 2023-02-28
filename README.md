@@ -3,7 +3,9 @@
 Local Server for [JavaScript Primer](https://github.com/asciidwango/js-primer).
 
 [JavaScript Primer](https://github.com/asciidwango/js-primer)のサンプルコードで利用することを目的にしたローカルサーバです。
-公開するアプリケーションには利用しないでください。
+
+> **Warning**
+> サンプルコードの実行を目的にしたローカルサーバであるため、公開するアプリケーションには利用しないでください。
 
 ### Requirements
 
