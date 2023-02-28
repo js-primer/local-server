@@ -30,14 +30,14 @@ export const run = () => {
         port: cli.flags.port !== undefined ? Number(cli.flags.port) : 3000
     });
     // Ctrl + C を押したときにメッセージを出す
-    process.on("SIGINT", function() {
+    process.on("SIGINT", function () {
         server.stop();
         process.exit();
     });
     return server
         .start()
         .then(() => {})
-        .catch(error => {
+        .catch((error) => {
             console.error(error.message);
         });
 };
