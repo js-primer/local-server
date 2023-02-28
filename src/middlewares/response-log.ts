@@ -14,7 +14,7 @@ export const responseLog = (): HandleFunction => {
         // items shared between the request and response of just one cycle
         const cycle: Cycle = {
             log: getLogger(),
-            time: process.hrtime(),
+            time: process.hrtime()
         };
         const handleClose = () => logClose(req, res, cycle);
         res.on("finish", () => {

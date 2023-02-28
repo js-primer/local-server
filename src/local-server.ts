@@ -28,7 +28,7 @@ export class LocalServer {
     }
 
     start() {
-        return detectPort(this.port).then(newPort => {
+        return detectPort(this.port).then((newPort) => {
             if (this.port !== newPort) {
                 console.log(
                     `${logSymbols.warning} ポート番号:${this.port}はすでに使われています。利用できる別のポート番号を探索中です。`
